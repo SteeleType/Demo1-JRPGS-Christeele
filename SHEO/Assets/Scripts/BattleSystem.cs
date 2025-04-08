@@ -86,6 +86,25 @@ public class BattleSystem : MonoBehaviour
         
     }
 
+    IEnumerator PlayerRecruit()
+    {
+        if (enemyUnit.currentHP <= (enemyUnit.maxHP / 2))
+        {
+            dialogueText.text = "You used your coorperate skills to sucessfully recruit.";
+            yield return new WaitForSeconds(2f);
+            state = BattleState.WON;
+            EndBattle();
+        }
+        else
+        {
+            dialogueText.text = "You fail your recruitment.";
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
     void EndBattle()
     {
         if (state == BattleState.WON)
@@ -139,6 +158,18 @@ public class BattleSystem : MonoBehaviour
 
         
     }
+    
+    public void OnRecruitButton()
+        {
+            if (state != BattleState.PLAYERTURN)
+            {
+                return;
+            }
+            else
+            {
+                StartCoroutine(PlayerRecruit());
+            }
+        }
     
     public void OnHealButton()
     {
