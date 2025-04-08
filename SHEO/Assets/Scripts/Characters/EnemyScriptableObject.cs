@@ -16,5 +16,13 @@ public class EnemyScriptableObject : ScriptableObject
     public float enemySoftAttack = 0f;
     public float enemyAvoid = 0f;
     public string enemyAbility = "Ability";
+    public bool recruited = false;
+    public bool activePlayer = false;
+
+
+
+
 
 }
+
+

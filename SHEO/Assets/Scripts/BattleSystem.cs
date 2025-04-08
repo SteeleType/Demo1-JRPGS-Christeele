@@ -20,8 +20,8 @@ public class BattleSystem : MonoBehaviour
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
-    private Unit playerUnit;
-    private Unit enemyUnit;
+    [SerializeField] private Unit playerUnit;
+    [SerializeField] private Unit enemyUnit;
 
     public TextMeshProUGUI dialogueText;
 
@@ -49,6 +49,9 @@ public class BattleSystem : MonoBehaviour
     {
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
         playerUnit = playerGO.GetComponent<Unit>();
+        
+        
+        
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<Unit>();
 
