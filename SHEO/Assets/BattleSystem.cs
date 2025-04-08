@@ -90,10 +90,12 @@ public class BattleSystem : MonoBehaviour
     {
         if (state == BattleState.WON)
         {
+            //this can move onto the next battle
             dialogueText.text = "You win!";
         }
         else
         {
+            //this can restart battle
             state = BattleState.LOST;
             dialogueText.text = "You lose!";
         }
