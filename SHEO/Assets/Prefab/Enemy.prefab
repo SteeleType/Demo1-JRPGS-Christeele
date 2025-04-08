@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1844450385750254212}
   - component: {fileID: 6564266671459030384}
+  - component: {fileID: 6399153017674787528}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -137,3 +138,27 @@ MonoBehaviour:
   damage: 6
   maxHP: 30
   currentHP: 30
+--- !u!114 &6399153017674787528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8310581623139763010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f6f87b6b752435a971ce385b43ec6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scAnalyst: {fileID: 11400000, guid: f886df5f92be94daca58bfb70d5f2c1f, type: 2}
+  scAssociate: {fileID: 11400000, guid: 3035b133f8e2241d287f1a827cd26187, type: 2}
+  scDesigner: {fileID: 11400000, guid: 8779cee8f168244e9b4df2c84c21e55e, type: 2}
+  scHR: {fileID: 11400000, guid: 3062336fbe6fd420fa76e1140cbd4abf, type: 2}
+  scManager: {fileID: 11400000, guid: adf4a396fab2a4cb6a5302dec42d5eb4, type: 2}
+  scProgrammer: {fileID: 11400000, guid: a063a60a52e994471952bd0f60204250, type: 2}
+  scSalesBro: {fileID: 11400000, guid: 579d5a8c9397e4e6189172477b85f129, type: 2}
+  scScrumMaster: {fileID: 11400000, guid: c9fd1ac498d6d44d3a105ed40a8fac16, type: 2}
+  scSeniorIntern: {fileID: 11400000, guid: e40c8e55da5ca4f5494a471a57417c8e, type: 2}
+  scSoftIntern: {fileID: 11400000, guid: 7060a0e24bed94adf916d5f67471d495, type: 2}
+  scTechIntern: {fileID: 11400000, guid: 2cf9ae5a226c341d6811ddab24a8c646, type: 2}
+  scSHEO: {fileID: 11400000, guid: 60d81c3e822d14e36b19cafe5175e2d2, type: 2}
