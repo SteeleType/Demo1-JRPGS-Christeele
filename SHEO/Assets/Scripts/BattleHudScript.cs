@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class BattleHudScript : MonoBehaviour
 {
-
-
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI levelText;
     public Slider hpSlider;

@@ -741,6 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 335797603}
   - component: {fileID: 335797602}
+  - component: {fileID: 335797604}
   m_Layer: 0
   m_Name: GayManager
   m_TagString: Untagged
@@ -779,6 +780,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &335797604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335797601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52ff0dc6719d42d3adcbb5a3d1a6480, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionType: 0
+  minionState: 0
 --- !u!1 &366560073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2825,7 +2840,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1251261766}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2065528794}
+        m_TargetAssemblyTypeName: GeneratingEmployees, Assembly-CSharp
+        m_MethodName: RecruitGenerator
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1251261766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,6 +3643,7 @@ RectTransform:
   - {fileID: 817545188}
   - {fileID: 1861846837}
   - {fileID: 290022327}
+  - {fileID: 2065528795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4200,11 +4228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479413806055554900, guid: 14ed258f0a381415e915dddb691a32c0, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51
+      value: 26.5
       objectReference: {fileID: 0}
     - target: {fileID: 479413806055554900, guid: 14ed258f0a381415e915dddb691a32c0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -41
+      value: -29
       objectReference: {fileID: 0}
     - target: {fileID: 479413806055554900, guid: 14ed258f0a381415e915dddb691a32c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4374,6 +4402,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020425330}
   m_CullTransparentMesh: 1
+--- !u!1 &2065528793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065528795}
+  - component: {fileID: 2065528794}
+  m_Layer: 0
+  m_Name: EmployeeGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2065528794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065528793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93b5fac4a82684b45ac57b0801d6ca3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minionManager: {fileID: 335797604}
+  internPrefab: {fileID: 5959057610869794159, guid: 14ed258f0a381415e915dddb691a32c0, type: 3}
+  managerPrefab: {fileID: 7113283806113285276, guid: 0422bedb4c8b5410cac57209dbaa0022, type: 3}
+  recruiterPrefab: {fileID: 1459721145560450536, guid: 861200bfe9a2b4353ada43772f56b8fa, type: 3}
+  salesBroPrefab: {fileID: 6963399463075777926, guid: d8acaa9aefa2e42ef907849d2bc0d14e, type: 3}
+  spacesAvailable: 0
+--- !u!4 &2065528795
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065528793}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -327.8, y: 225.54001, z: 3.2901616}
+  m_LocalScale: {x: 1.4634144, y: 1.4634144, z: 1.4634144}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1662870604}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2104740560
 GameObject:
   m_ObjectHideFlags: 0
