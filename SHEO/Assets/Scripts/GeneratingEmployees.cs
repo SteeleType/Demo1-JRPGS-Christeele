@@ -41,6 +41,8 @@ public class GeneratingEmployees : MonoBehaviour
             spacesAvailable++;
         }
     }
+
+   
     void Start()
     {
         RecruitGenerator();
