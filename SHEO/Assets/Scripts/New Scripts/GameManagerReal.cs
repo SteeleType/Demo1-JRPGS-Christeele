@@ -48,6 +48,10 @@ public class GameManagerReal : MonoBehaviour
     public Transform internTransform;
     public Transform recruiterTransform;
     
+    //refrencing other scripts
+    public GeneratingEmployees generatingEmployees;
+    public string nextRecruit;
+    
     
     // //properties to hopefully update when called with the current counts
     // public int ManagerCount
@@ -297,6 +301,46 @@ public class GameManagerReal : MonoBehaviour
             return;
         }
     }
+    //recruit employee function
+    public void RecruitEmployee()
+    {
+        if (generatingEmployees.spawnedEmployees.Count < 0)
+        {
+            return;
+        }
+        else
+        {
+            nextRecruit = generatingEmployees.spawnedEmployees[0].ToString();
+            generatingEmployees.spawnedEmployees.RemoveAt(0);
+            if (nextRecruit == "SalesBro")
+            {
+                salesBroCount++;
+                generatingEmployees.spacesAvailable--;
+                StartCoroutine(EnemyTakesTurn());
+            }
+
+            if (nextRecruit == "Intern")
+            {
+                internCount++;
+                generatingEmployees.spacesAvailable--;
+                StartCoroutine(EnemyTakesTurn());
+            }
+
+            if (nextRecruit == "Recruiter")
+            {
+                recruiterCount++;
+                generatingEmployees.spacesAvailable--;
+                StartCoroutine(EnemyTakesTurn());
+            }
+
+            if (nextRecruit == "Manager")
+            {
+                managerCount++;
+                generatingEmployees.spacesAvailable--;
+                StartCoroutine(EnemyTakesTurn());
+            }
+        }
+    }
 
     void EnemyTurn()
     {
@@ -326,6 +370,7 @@ public class GameManagerReal : MonoBehaviour
     {
         EnemyTurn();
         yield return new WaitForSeconds(2f);
+        generatingEmployees.RecruitGenerator();
         PlayerTurn();
     }
 

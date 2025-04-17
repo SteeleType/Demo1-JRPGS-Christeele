@@ -12,33 +12,59 @@ public class GeneratingEmployees : MonoBehaviour
     public GameObject salesBroPrefab;
     public int spacesAvailable = 0;
     private GameObject instantiatedEmployees;
-    private List<GameObject> spawnedEmployees = new List<GameObject>();
+    public float spacing;
+    public Transform employeeGeneratorTransform;
+    public List<string> spawnedEmployees = new List<string>();
+    public List<GameObject> employees = new List<GameObject>();
     public void RecruitGenerator()
     {
-        Destroy(instantiatedEmployees);
+        foreach (Transform child in employeeGeneratorTransform)
+        {
+            Destroy(child.gameObject);
+        }
         minionType = (MinionManager.MinionType)Random.Range(0, 4);
-        if (minionType == MinionManager.MinionType.Intern)
+        spawnedEmployees.Add(minionType.ToString());
+        for (int i = 0; i < spawnedEmployees.Count; i++)
         {
-            instantiatedEmployees = Instantiate(internPrefab, transform);
-            spacesAvailable++;
-        }
+            if (spawnedEmployees[i] == "Intern")
+            {
+                GameObject instantiatedEmployees = Instantiate(internPrefab, employeeGeneratorTransform);
+                RectTransform rt = instantiatedEmployees.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.anchoredPosition = new Vector2(i * spacing, 0f);
+                }
+            }
 
-        if (minionType == MinionManager.MinionType.Manager)
-        {
-            instantiatedEmployees = Instantiate(managerPrefab, transform);
-            spacesAvailable++;
-        }
+            if (spawnedEmployees[i] == "Manager")
+            {
+                instantiatedEmployees = Instantiate(managerPrefab, employeeGeneratorTransform);
+                RectTransform rt = instantiatedEmployees.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.anchoredPosition = new Vector2(i * spacing, 0f);
+                }
+            }
 
-        if (minionType == MinionManager.MinionType.Recruiter)
-        {
-            instantiatedEmployees = Instantiate(recruiterPrefab, transform);
-            spacesAvailable++;
-        }
+            if (spawnedEmployees[i] == "Recruiter")
+            {
+                instantiatedEmployees = Instantiate(recruiterPrefab, employeeGeneratorTransform);
+                RectTransform rt = instantiatedEmployees.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.anchoredPosition = new Vector2(i * spacing, 0f);
+                }
+            }
 
-        if (minionType == MinionManager.MinionType.SalesBro)
-        {
-            instantiatedEmployees = Instantiate(salesBroPrefab, transform);
-            spacesAvailable++;
+            if (spawnedEmployees[i] == "SalesBro")
+            {
+                instantiatedEmployees = Instantiate(salesBroPrefab, employeeGeneratorTransform);
+                RectTransform rt = instantiatedEmployees.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.anchoredPosition = new Vector2(i * spacing, 0f);
+                }
+            }
         }
     }
 
