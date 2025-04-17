@@ -368,9 +368,9 @@ public class GameManagerReal : MonoBehaviour
     }
     IEnumerator EnemyTakesTurn()
     {
+        generatingEmployees.RecruitGenerator();
         EnemyTurn();
         yield return new WaitForSeconds(2f);
-        generatingEmployees.RecruitGenerator();
         PlayerTurn();
     }
 

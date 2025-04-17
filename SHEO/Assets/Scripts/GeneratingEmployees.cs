@@ -18,12 +18,15 @@ public class GeneratingEmployees : MonoBehaviour
     public List<GameObject> employees = new List<GameObject>();
     public void RecruitGenerator()
     {
+        //this destroys the prefabs so it can run a new one 
         foreach (Transform child in employeeGeneratorTransform)
         {
             Destroy(child.gameObject);
         }
         minionType = (MinionManager.MinionType)Random.Range(0, 4);
         spawnedEmployees.Add(minionType.ToString());
+        
+        //this forloop is to represent what current recruitable employees are on the list
         for (int i = 0; i < spawnedEmployees.Count; i++)
         {
             if (spawnedEmployees[i] == "Intern")
@@ -35,7 +38,7 @@ public class GeneratingEmployees : MonoBehaviour
                     rt.anchoredPosition = new Vector2(i * spacing, 0f);
                 }
             }
-
+            
             if (spawnedEmployees[i] == "Manager")
             {
                 instantiatedEmployees = Instantiate(managerPrefab, employeeGeneratorTransform);
@@ -67,8 +70,6 @@ public class GeneratingEmployees : MonoBehaviour
             }
         }
     }
-
-   
     void Start()
     {
         RecruitGenerator();
