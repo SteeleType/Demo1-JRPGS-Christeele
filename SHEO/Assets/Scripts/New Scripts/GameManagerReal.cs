@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 
@@ -20,6 +23,7 @@ public class GameManagerReal : MonoBehaviour
     public int playerMorale;
     public int maxHealth;
     public int enemyDamage;
+    public int paralysis;
     public BattleStates state;
     public TextMeshProUGUI playerMoraleText;
     
@@ -251,7 +255,8 @@ public class GameManagerReal : MonoBehaviour
     {
         if (internCount >= 2)
         {
-            internCount -= 2; 
+            internCount -= 2;
+            enemyMorale -= (1 + internCount);
             StartCoroutine(EnemyTakesTurn());
         }
         else
@@ -264,8 +269,20 @@ public class GameManagerReal : MonoBehaviour
     {
         if (managerCount >= 3)
         {
-            managerCount -= 3; 
-            StartCoroutine(EnemyTakesTurn());
+            managerCount -= 3;
+            paralysis = Random.Range(0, 2);
+            {
+                if (paralysis == 0)
+                {
+                    attackMenu.SetActive(false);
+                    mainMenu.SetActive(true);
+                }
+                else
+                {
+                    StartCoroutine(EnemyTakesTurn());
+                }
+            }
+            
         }
         else
         {
@@ -281,6 +298,7 @@ public class GameManagerReal : MonoBehaviour
             internCount -= 1;
             recruiterCount -= 1;
             salesBroCount -= 1;
+            enemyMorale -= 3;
             StartCoroutine(EnemyTakesTurn());
         }
         else
