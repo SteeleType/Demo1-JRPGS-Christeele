@@ -1053,6 +1053,7 @@ MonoBehaviour:
   playerMorale: 3
   maxHealth: 6
   enemyDamage: 0
+  paralysis: 0
   state: 0
   playerMoraleText: {fileID: 449697421}
   enemyMorale: 10
