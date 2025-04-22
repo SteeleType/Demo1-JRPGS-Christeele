@@ -216,6 +216,7 @@ public class GameManagerReal : MonoBehaviour
         mainMenu.SetActive(true);
         attackMenu.SetActive(false);
         enemyTurnMenu.SetActive(false);
+        RandomStart();
 
     }
 
@@ -442,6 +443,34 @@ public class GameManagerReal : MonoBehaviour
         mainMenu.SetActive(true);
         enemyTurnMenu.SetActive(false);
         state = BattleStates.ENEMYTURN;
+    }
+
+    void RandomStart()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            int randomized = Random.Range(0, 4);
+            if (randomized == 0)
+            {
+                managerCount++;
+            }
+
+            if (randomized == 1)
+            {
+                recruiterCount++;
+            }
+
+            if (randomized == 2)
+            {
+                internCount++;
+            }
+
+            if (randomized == 3)
+            {
+                salesBroCount++;
+            }
+            
+        }
     }
     IEnumerator EnemyTakesTurn()
     {
