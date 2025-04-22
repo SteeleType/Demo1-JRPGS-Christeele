@@ -60,7 +60,7 @@ public class GameManagerReal : MonoBehaviour
     public string nextRecruit;
     
     
-    // //properties to hopefully update when called with the current counts
+    //properties to hopefully update when called with the current counts
     // public int ManagerCount
     // {
     //     set

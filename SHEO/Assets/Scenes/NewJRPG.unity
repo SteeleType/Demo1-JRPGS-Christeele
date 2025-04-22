@@ -1048,8 +1048,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   managerCount: 1
   recruiterCount: 1
-  salesBroCount: 1
-  internCount: 1
+  salesBroCount: 0
+  internCount: 2
   maxEmployees: 8
   playerMorale: 6
   maxHealth: 6
