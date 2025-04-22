@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4802915074905955408}
   - component: {fileID: 5437261458841162306}
   - component: {fileID: 6086086956878600405}
+  - component: {fileID: 8628326191861091794}
   m_Layer: 0
   m_Name: Intern
   m_TagString: Untagged
@@ -149,3 +150,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.086666666, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &8628326191861091794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3148366444365342201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8d43e1003d942c7a88ac1d11aed244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  directionChangeInterval: 3
