@@ -6,12 +6,20 @@ public class EmployeeHealth : MonoBehaviour
     public int employeeBurnOut;
     public TextMeshPro employeeBurnOutText;
 
+    void Start()
+    {
+        employeeBurnOutText.text = employeeBurnOut.ToString();
+    }
     public int EmployeeBurnOut
     {
         set
         {
             employeeBurnOut = value; 
-            LowerEmployeeBurnOut();
+            if (employeeBurnOut <= 0)
+            {
+                Destroy(this.gameObject);
+                Destroy(employeeBurnOutText);
+            }
         }
         get
         {
@@ -25,4 +33,5 @@ public class EmployeeHealth : MonoBehaviour
         EmployeeBurnOut -= 1;
         employeeBurnOutText.text = employeeBurnOut.ToString();
     }
+    
 }
