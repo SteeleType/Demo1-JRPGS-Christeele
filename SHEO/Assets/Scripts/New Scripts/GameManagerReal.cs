@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.Rendering.Universal;
@@ -24,8 +25,10 @@ public class GameManagerReal : MonoBehaviour
     public int maxHealth;
     public int enemyDamage;
     public int paralysis;
+    public int enemiesDefeated;
     public BattleStates state;
     public TextMeshProUGUI playerMoraleText;
+    public TextMeshProUGUI enemiesDefeatedText;
     
     //enemy variables
     public int enemyMorale;
@@ -142,6 +145,7 @@ public class GameManagerReal : MonoBehaviour
         //update player health info
         playerMoraleText.text = "Morale: " + playerMorale + "/" + maxHealth;
         enemyMoraleText.text = "Morale: " + enemyMorale + "/" + maxEnemyMorale;
+        enemiesDefeatedText.text = "Enemies Defeated: " + enemiesDefeated;
     }
     
     public void AddManagers()
@@ -156,16 +160,41 @@ public class GameManagerReal : MonoBehaviour
 
     public void SuckMorale()
     {
-        
-        managerCount--;
-        internCount--;
-        recruiterCount--;
-        salesBroCount--;
-        if (playerMorale < maxHealth)
+        if (salesBroCount > 0 || internCount > 0 || recruiterCount > 0 || managerCount > 0)
         {
-            playerMorale++;
+            if (internCount > 0)
+            {
+                internCount--;
+            }
+            else
+            {
+                if (managerCount > 0)
+                {
+                    managerCount--;
+                }
+                else
+                {
+                    if (recruiterCount > 0)
+                    {
+                        recruiterCount--;
+                    }
+                    else
+                    {
+                        if (salesBroCount > 0)
+                        {
+                            salesBroCount--;
+                        }
+                    }
+                }
+            }
+            if (playerMorale < maxHealth)
+            {
+                playerMorale += 1;
+            }
+
+            UpdateTotal();
+            StartCoroutine(EnemyTakesTurn());
         }
-        UpdateTotal();
     }
 
     public void Attack()
@@ -229,6 +258,20 @@ public class GameManagerReal : MonoBehaviour
         {
             playerMorale = maxHealth;
         }
+
+        if (enemyMorale <= 0)
+        {
+            enemiesDefeated++;
+            enemyMorale = maxEnemyMorale + 1;
+            maxEnemyMorale = enemyMorale;
+            StartCoroutine(PlayerDefeatsFoe());
+        }
+
+        if (playerMorale <= 0)
+        {
+            YouLose();
+        }
+        
         UpdateTotal();
     }
     
@@ -365,7 +408,7 @@ public class GameManagerReal : MonoBehaviour
         attackMenu.SetActive(false);
         mainMenu.SetActive(false);
         enemyTurnMenu.SetActive(true);
-        enemyDamage = Random.Range(0, 3);
+        enemyDamage = Random.Range(0, 2);
         if (enemyDamage == 0)
         {
             enemyTurnText.text = "The Enemy Missed You";
@@ -376,6 +419,22 @@ public class GameManagerReal : MonoBehaviour
         }
         playerMorale -= enemyDamage;
         state = BattleStates.PLAYERTURN;
+    }
+
+    void YouLose()
+    {
+        attackMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        enemyTurnMenu.SetActive(true);
+        enemyTurnText.text = "You lost, try again";
+    }
+
+    void YouWin()
+    {
+        attackMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        enemyTurnMenu.SetActive(true);
+        enemyTurnText.text = "Defeated enemy, onto the next";
     }
 
     void PlayerTurn()
@@ -389,6 +448,13 @@ public class GameManagerReal : MonoBehaviour
         generatingEmployees.RecruitGenerator();
         EnemyTurn();
         yield return new WaitForSeconds(2f);
+        PlayerTurn();
+    }
+
+    IEnumerator PlayerDefeatsFoe()
+    {
+        YouWin();
+        yield return new WaitForSeconds(3f);
         PlayerTurn();
     }
 
