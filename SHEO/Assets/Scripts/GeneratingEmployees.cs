@@ -16,6 +16,38 @@ public class GeneratingEmployees : MonoBehaviour
     public Transform employeeGeneratorTransform;
     public List<string> spawnedEmployees = new List<string>();
     public List<GameObject> employees = new List<GameObject>();
+    public Transform randomLocation;
+
+
+
+    public void CreateMinions()
+    {
+        //create random minion
+        minionType = (MinionManager.MinionType)Random.Range(0, 4);
+        randomLocation = new GameObject().transform;
+
+        switch (minionType)
+        {
+            case MinionManager.MinionType.Intern:
+                Debug.Log("Creating intern");
+                Instantiate(internPrefab, employeeGeneratorTransform);
+                break;
+            case MinionManager.MinionType.Manager:
+                Debug.Log("Creating manager");
+                break;
+            case MinionManager.MinionType.Recruiter:
+                Debug.Log("Creating recruiter");
+                break;
+            case MinionManager.MinionType.SalesBro:
+                Debug.Log("Creating sales bro");
+                break; 
+            default:
+                break;
+        }
+        
+        Debug.Log(minionType);
+    }
+    
     public void RecruitGenerator()
     {
         //this destroys the prefabs so it can run a new one 
@@ -72,6 +104,7 @@ public class GeneratingEmployees : MonoBehaviour
     }
     void Start()
     {
-        RecruitGenerator();
+        //RecruitGenerator();
+        CreateMinions();
     }
 }
