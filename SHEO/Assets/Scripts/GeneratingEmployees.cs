@@ -17,36 +17,43 @@ public class GeneratingEmployees : MonoBehaviour
     public List<string> spawnedEmployees = new List<string>();
     public List<GameObject> employees = new List<GameObject>();
     public Vector3 randomLocation;
+    public int minionCount;
 
-
+    public void Update()
+    {
+        if (minionCount < 10)
+        {
+            CreateMinions();
+        }
+    }
 
     public void CreateMinions()
     {
         //create random minion
         minionType = (MinionManager.MinionType)Random.Range(0, 4);
-        randomLocation = new Vector3(Random.Range(-200,50), Random.Range(20,120), 0);
+        randomLocation = new Vector3(Random.Range(-200,50), Random.Range(20,100), 0);
         
       
 
         switch (minionType)
         {
             case MinionManager.MinionType.Intern:
-                Debug.Log("Creating intern");
                 Instantiate(internPrefab, randomLocation, Quaternion.identity);
+                minionCount++;
                 break;
             case MinionManager.MinionType.Manager:
-                Debug.Log("Creating manager");
                 Instantiate(managerPrefab, randomLocation, Quaternion.identity);
+                minionCount++;
 
                 break;
             case MinionManager.MinionType.Recruiter:
-                Debug.Log("Creating recruiter");
                 Instantiate(recruiterPrefab, randomLocation, Quaternion.identity);
+                minionCount++;
 
                 break;
             case MinionManager.MinionType.SalesBro:
-                Debug.Log("Creating sales bro");
                 Instantiate(salesBroPrefab, randomLocation, Quaternion.identity);
+                minionCount++;
 
                 break; 
             default:
@@ -56,6 +63,7 @@ public class GeneratingEmployees : MonoBehaviour
         Debug.Log(minionType);
     }
     
+    //TODO: DEPRECATED - DELETE ONCE THIS DOES NOT EFFECT GAMEMANGERREAL
     public void RecruitGenerator()
     {
         //this destroys the prefabs so it can run a new one 
