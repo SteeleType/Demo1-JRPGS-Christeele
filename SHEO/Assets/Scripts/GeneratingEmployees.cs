@@ -16,7 +16,7 @@ public class GeneratingEmployees : MonoBehaviour
     public Transform employeeGeneratorTransform;
     public List<string> spawnedEmployees = new List<string>();
     public List<GameObject> employees = new List<GameObject>();
-    public Transform randomLocation;
+    public Vector3 randomLocation;
 
 
 
@@ -24,22 +24,30 @@ public class GeneratingEmployees : MonoBehaviour
     {
         //create random minion
         minionType = (MinionManager.MinionType)Random.Range(0, 4);
-        randomLocation = new GameObject().transform;
+        randomLocation = new Vector3(Random.Range(-200,50), Random.Range(20,120), 0);
+        
+      
 
         switch (minionType)
         {
             case MinionManager.MinionType.Intern:
                 Debug.Log("Creating intern");
-                Instantiate(internPrefab, employeeGeneratorTransform);
+                Instantiate(internPrefab, randomLocation, Quaternion.identity);
                 break;
             case MinionManager.MinionType.Manager:
                 Debug.Log("Creating manager");
+                Instantiate(managerPrefab, randomLocation, Quaternion.identity);
+
                 break;
             case MinionManager.MinionType.Recruiter:
                 Debug.Log("Creating recruiter");
+                Instantiate(recruiterPrefab, randomLocation, Quaternion.identity);
+
                 break;
             case MinionManager.MinionType.SalesBro:
                 Debug.Log("Creating sales bro");
+                Instantiate(salesBroPrefab, randomLocation, Quaternion.identity);
+
                 break; 
             default:
                 break;
