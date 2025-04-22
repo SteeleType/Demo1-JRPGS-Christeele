@@ -4,7 +4,7 @@ using UnityEngine;
 public class EmployeeHealth : MonoBehaviour
 {  
     public int employeeBurnOut;
-    public TextMeshProUGUI employeeBurnOutText;
+    public TextMeshPro employeeBurnOutText;
 
     public int EmployeeBurnOut
     {
