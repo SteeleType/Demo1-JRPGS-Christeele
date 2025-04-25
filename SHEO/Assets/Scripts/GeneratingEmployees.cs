@@ -18,6 +18,7 @@ public class GeneratingEmployees : MonoBehaviour
     public List<GameObject> employees = new List<GameObject>();
     public Vector3 randomLocation;
     public int minionCount;
+    private MinionManager.MinionState minionState;
 
     public void Update()
     {
@@ -31,28 +32,39 @@ public class GeneratingEmployees : MonoBehaviour
     {
         //create random minion
         minionType = (MinionManager.MinionType)Random.Range(0, 4);
-        randomLocation = new Vector3(Random.Range(-200,50), Random.Range(20,100), 0);
+        randomLocation = new Vector3(Random.Range(-200,50), Random.Range(20,100), 1);
+
         
       
+//instantiates different prefabs based on what the minion type is from the random selector above
+//changes the minion state to Available because it generates in the "available" area
 
         switch (minionType)
         {
             case MinionManager.MinionType.Intern:
-                Instantiate(internPrefab, randomLocation, Quaternion.identity);
+                GameObject newIntern = Instantiate(internPrefab, randomLocation, Quaternion.identity);
+                MinionManager internManager = newIntern.GetComponent<MinionManager>();
+                internManager.minionState = MinionManager.MinionState.Available;
                 minionCount++;
                 break;
             case MinionManager.MinionType.Manager:
-                Instantiate(managerPrefab, randomLocation, Quaternion.identity);
+                GameObject newManager = Instantiate(managerPrefab, randomLocation, Quaternion.identity);
+                MinionManager manManager = newManager.GetComponent<MinionManager>();
+                manManager.minionState = MinionManager.MinionState.Available;
                 minionCount++;
 
                 break;
             case MinionManager.MinionType.Recruiter:
-                Instantiate(recruiterPrefab, randomLocation, Quaternion.identity);
+                GameObject newRecruiter = Instantiate(recruiterPrefab, randomLocation, Quaternion.identity);
+                MinionManager recManager = newRecruiter.GetComponent<MinionManager>();
+                recManager.minionState = MinionManager.MinionState.Available;
                 minionCount++;
 
                 break;
             case MinionManager.MinionType.SalesBro:
-                Instantiate(salesBroPrefab, randomLocation, Quaternion.identity);
+                GameObject newSalesBro = Instantiate(salesBroPrefab, randomLocation, Quaternion.identity);
+                MinionManager salesManager = newSalesBro.GetComponent<MinionManager>();
+                salesManager.minionState = MinionManager.MinionState.Available;
                 minionCount++;
 
                 break; 
