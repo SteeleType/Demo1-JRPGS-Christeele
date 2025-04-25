@@ -4217,6 +4217,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Intern
       objectReference: {fileID: 0}
+    - target: {fileID: 5437261458841162306, guid: 7e01689308746400bb4d5b83b013cc4f, type: 3}
+      propertyPath: minionState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8628326191861091794, guid: 7e01689308746400bb4d5b83b013cc4f, type: 3}
       propertyPath: speed
       value: 20

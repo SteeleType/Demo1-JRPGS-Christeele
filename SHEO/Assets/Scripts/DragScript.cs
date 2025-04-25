@@ -34,7 +34,8 @@ public class DragScript : MonoBehaviour
         {
             Debug.Log("inside the owned rectangle!");
             //once minion has been dragged into your rectangle, sets their state to OWNED
-            minionState = MinionManager.MinionState.Owned;
+            MinionManager mManager = gameObject.GetComponent<MinionManager>();
+            mManager.minionState = MinionManager.MinionState.Owned;
         }
         else
         {

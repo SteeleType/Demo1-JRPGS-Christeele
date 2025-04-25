@@ -72,6 +72,7 @@ public class GeneratingEmployees : MonoBehaviour
                 break;
         }
         
+        
         Debug.Log(minionType);
     }
     
