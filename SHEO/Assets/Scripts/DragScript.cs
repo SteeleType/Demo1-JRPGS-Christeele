@@ -3,18 +3,21 @@ using UnityEngine;
 public class DragScript : MonoBehaviour
 {
 
-    public MinionMovementScript movement;
+    private MinionMovementScript movement;
     private bool isDragging = false;
     private Vector3 offset;
     private Vector2 newPosition;
     private Vector3 initialPosition;
     private MinionManager.MinionState minionState;
     public AreaManagerScript areaManager;
+    private bool intersectingBlank = false;
+    private GameObject touchedBlank;
 
 
     void Start()
     {
         areaManager = GameObject.Find("AreaManager").GetComponent<AreaManagerScript>();
+        movement = GetComponent<MinionMovementScript>();
     }
     private void OnMouseDown()
     {
@@ -37,6 +40,12 @@ public class DragScript : MonoBehaviour
             MinionManager mManager = gameObject.GetComponent<MinionManager>();
             mManager.minionState = MinionManager.MinionState.Owned;
         }
+        
+        else if (intersectingBlank)
+        {
+            transform.position = touchedBlank.transform.position;
+            movement.speed = 0f;
+        }
         else
         {
             Debug.Log("outside the owned rectangle!");
@@ -51,6 +60,25 @@ public class DragScript : MonoBehaviour
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
         }
     }
-    
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Blank"))
+        {
+            intersectingBlank = true;
+            GameObject touchedObject = other.gameObject;
+            touchedBlank = touchedObject;
+            Debug.Log(touchedBlank.name);
+
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Blank"))
+        {
+            intersectingBlank = false;
+        }
+    }
   
 }

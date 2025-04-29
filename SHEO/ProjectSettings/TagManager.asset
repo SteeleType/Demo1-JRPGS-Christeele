@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Minion
+  - Blank
   layers:
   - Default
   - TransparentFX
