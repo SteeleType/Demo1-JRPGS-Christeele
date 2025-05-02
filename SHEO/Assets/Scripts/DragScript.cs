@@ -12,12 +12,15 @@ public class DragScript : MonoBehaviour
     public AreaManagerScript areaManager;
     private bool intersectingBlank = false;
     private GameObject touchedBlank;
+    private MinionManager mManager;
 
 
     void Start()
     {
         areaManager = GameObject.Find("AreaManager").GetComponent<AreaManagerScript>();
         movement = GetComponent<MinionMovementScript>();
+        mManager = gameObject.GetComponent<MinionManager>();
+
     }
     private void OnMouseDown()
     {
@@ -37,14 +40,14 @@ public class DragScript : MonoBehaviour
         {
             Debug.Log("inside the owned rectangle!");
             //once minion has been dragged into your rectangle, sets their state to OWNED
-            MinionManager mManager = gameObject.GetComponent<MinionManager>();
             mManager.minionState = MinionManager.MinionState.Owned;
         }
         
-        else if (intersectingBlank)
+        else if (intersectingBlank && mManager.minionState == MinionManager.MinionState.Owned)
         {
             transform.position = touchedBlank.transform.position;
             movement.speed = 0f;
+            Debug.Log("dropped onto" + touchedBlank.name);
         }
         else
         {
@@ -68,7 +71,7 @@ public class DragScript : MonoBehaviour
             intersectingBlank = true;
             GameObject touchedObject = other.gameObject;
             touchedBlank = touchedObject;
-            Debug.Log(touchedBlank.name);
+            //Debug.Log(touchedBlank.name);
 
         }
     }
