@@ -58,7 +58,8 @@ public class GameManagerReal : MonoBehaviour
     //refrencing other scripts
     public GeneratingEmployees generatingEmployees;
     public string nextRecruit;
-    
+
+    public int numberRecruited = 0;
     
     //properties to hopefully update when called with the current counts
     // public int ManagerCount
@@ -472,7 +473,7 @@ public class GameManagerReal : MonoBehaviour
             
         }
     }
-    IEnumerator EnemyTakesTurn()
+    public IEnumerator EnemyTakesTurn()
     {
         //wait for one second
         yield return new WaitForSeconds(1f);
@@ -500,8 +501,8 @@ public class GameManagerReal : MonoBehaviour
     {
         //effect of spell
         
-        //why is this being doubled??
-            enemyMorale -= 1;
+        //why is this sometimes doubled??
+            enemyMorale -= 2;
             StartCoroutine(EnemyTakesTurn());
    
     }
@@ -510,8 +511,7 @@ public class GameManagerReal : MonoBehaviour
     {
         //effect of spell
         
-        //why is this being doubled??
-        playerMorale += 1;
+        playerMorale += 2;
         StartCoroutine(EnemyTakesTurn());
    
     }
@@ -525,9 +525,20 @@ public class GameManagerReal : MonoBehaviour
         //generate 2 minions
         generatingEmployees.CreateMinions();
         generatingEmployees.CreateMinions();
-        
+        generatingEmployees.CreateMinions();
         
         StartCoroutine(EnemyTakesTurn());
    
+    }
+
+    public IEnumerator EnemyTurnAfterRecruit()
+    {
+        numberRecruited++;
+        if (numberRecruited == 2)
+        {
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(EnemyTakesTurn());
+            numberRecruited = 0;
+        }
     }
 }

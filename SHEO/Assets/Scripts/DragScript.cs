@@ -16,6 +16,8 @@ public class DragScript : MonoBehaviour
     private MinionManager mManager;
     public GameObject gObject;
     public GameManagerReal gameManager;
+    //private int numberRecruited = 0; 
+
 
 
     void Start()
@@ -43,36 +45,69 @@ public class DragScript : MonoBehaviour
         
         if (areaManager.ownedRect.Contains(newPosition))
         {
-            Debug.Log("inside the owned rectangle!");
+            //Debug.Log("inside the owned rectangle!");
             //once minion has been dragged into your rectangle, sets their state to OWNED
             mManager.minionState = MinionManager.MinionState.Owned;
+            StartCoroutine(gameManager.EnemyTurnAfterRecruit());
         }
         
         else if (intersectingBlank && mManager.minionState == MinionManager.MinionState.Owned)
         {
             transform.position = touchedBlank.transform.position;
-            movement.speed = 0f;
             Debug.Log("dropped onto" + touchedBlank.name);
 
             switch (touchedBlank.name)
             {
                 case "BlankZyn":
-                    gameManager.ZynVortexNew();
-                    Debug.Log("fired zynvortexnew");
-                    //FOR SOME REASON this gets doubled, lol
-                    //destroy the prefab
-                    Destroy(gameObject, 1f);
+                    if (mManager.minionType == MinionManager.MinionType.SalesBro
+                        || mManager.minionType == MinionManager.MinionType.Manager)
+                    {
+                        movement.speed = 0f;
+                        gameManager.ZynVortexNew();
+                        Debug.Log("fired zynvortexnew");
+                        //FOR SOME REASON this gets doubled, lol
+                        //destroy the prefab
+                        Destroy(gameObject, 1f);
+                    }
+                    else
+                    {
+                        transform.position = initialPosition;
+                    }
+                 
                     
                     break;
                 case "BlankRecruit":
-                    gameManager.AddMinions();
-                    //destroy self
-                    Destroy(gameObject, 1f);
+                    if (mManager.minionType == MinionManager.MinionType.Recruiter
+                        || mManager.minionType == MinionManager.MinionType.Manager)
+                    {
+                        movement.speed = 0f;
+                        gameManager.AddMinions();
+                        //destroy self
+                        Destroy(gameObject, 1f);
+                    }
+                    else
+                    {
+                        transform.position = initialPosition;
+
+                    }
+
+                  
                     break;
                 case "BlankHeal":
-                    gameManager.Heal();
-                    //destroy self
-                    Destroy(gameObject, 1f);
+                    if (mManager.minionType == MinionManager.MinionType.Intern
+                        || mManager.minionType == MinionManager.MinionType.Manager)
+                    {
+                        movement.speed = 0f;
+                        gameManager.Heal();
+                        //destroy self
+                        Destroy(gameObject, 1f);
+                    }
+                    else
+                    {
+                        transform.position = initialPosition;
+
+                    }
+             
                     break;
                 default:
                     break;
