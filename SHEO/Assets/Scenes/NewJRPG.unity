@@ -516,7 +516,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'coffee run | heal 1 '
+  m_text: coffee run | heal 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2542,7 +2542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: recruit | add 3 minions
+  m_text: recruit | add 4 minions
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3670,6 +3670,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   areaManager: {fileID: 0}
+  gObject: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &941203718
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,6 +4735,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3915734742029545033, guid: 7e01689308746400bb4d5b83b013cc4f, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 335797601}
     - target: {fileID: 5437261458841162306, guid: 7e01689308746400bb4d5b83b013cc4f, type: 3}
       propertyPath: minionState
       value: 1

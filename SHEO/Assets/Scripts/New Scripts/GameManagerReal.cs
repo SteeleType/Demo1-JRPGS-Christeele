@@ -474,9 +474,13 @@ public class GameManagerReal : MonoBehaviour
     }
     IEnumerator EnemyTakesTurn()
     {
+        //wait for one second
+        yield return new WaitForSeconds(1f);
+        //then do stuff
         generatingEmployees.RecruitGenerator();
         EnemyTurn();
         yield return new WaitForSeconds(2f);
+        
         PlayerTurn();
     }
 
@@ -487,4 +491,43 @@ public class GameManagerReal : MonoBehaviour
         PlayerTurn();
     }
 
+    
+    
+    //NEW ATTACK FUNCTIONS 
+    
+    
+    public void ZynVortexNew()
+    {
+        //effect of spell
+        
+        //why is this being doubled??
+            enemyMorale -= 1;
+            StartCoroutine(EnemyTakesTurn());
+   
+    }
+    
+    public void Heal()
+    {
+        //effect of spell
+        
+        //why is this being doubled??
+        playerMorale += 1;
+        StartCoroutine(EnemyTakesTurn());
+   
+    }
+    
+    public void AddMinions()
+    {
+
+        //why is this being doubled??
+    
+        
+        //generate 2 minions
+        generatingEmployees.CreateMinions();
+        generatingEmployees.CreateMinions();
+        
+        
+        StartCoroutine(EnemyTakesTurn());
+   
+    }
 }
