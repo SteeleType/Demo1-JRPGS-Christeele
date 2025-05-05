@@ -441,6 +441,7 @@ public class GameManagerReal : MonoBehaviour
 
     void PlayerTurn()
     {
+        Cursor.lockState = CursorLockMode.None;
         mainMenu.SetActive(true);
         enemyTurnMenu.SetActive(false);
         state = BattleStates.ENEMYTURN;
@@ -475,6 +476,7 @@ public class GameManagerReal : MonoBehaviour
     }
     public IEnumerator EnemyTakesTurn()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         //wait for one second
         yield return new WaitForSeconds(1f);
         //then do stuff
